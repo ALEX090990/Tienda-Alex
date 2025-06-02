@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Tienda | Estilo Gallo más Gallo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background-color: #004aad;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #ffd100;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px;
+    }
+
+    nav a {
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .banner {
+      background-image: url('https://via.placeholder.com/1200x300?text=Promoci%C3%B3n+Destacada');
+      background-size: cover;
+      height: 300px;
+    }
+
+    .productos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .producto {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      width: 250px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .producto img {
+      width: 100%;
+      height: auto;
+    }
+
+    .producto h3 {
+      font-size: 1.1em;
+      margin: 10px 0 5px;
+    }
+
+    .producto p {
+      margin: 5px 0;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: #004aad;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: #004aad;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .formulario {
+      display: none;
+      padding: 20px;
+    }
+
+    .formulario input {
+      display: block;
+      width: 300px;
+      margin: 10px 0;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Mi Tienda en Línea</h1>
+    <p>Estilo Gallo más Gallo</p>
+  </header>
+
+  <nav>
+    <a href="#">Inicio</a>
+    <a href="#">Productos</a>
+    <a href="#">Ofertas</a>
+    <a href="#">Contacto</a>
+  </nav>
+
+  <div class="banner"></div>
+
+  <section class="productos" id="productos">
+    <!-- 20 productos -->
+    <script>
+      const productos = [
+        'TV Smart 50"', 'TV Smart 55"', 'TV Smart 65"', 'Refrigeradora', 'Congelador',
+        'Cocina Eléctrica', 'Microondas', 'Lavadora', 'Secadora', 'Aire Acondicionado',
+        'Laptop Dell', 'Laptop HP', 'Laptop Lenovo', 'iPhone 13', 'iPhone 14',
+        'Samsung Galaxy S22', 'Xiaomi Redmi Note 12', 'Tablet Samsung', 'Bicicleta', 'Ventilador'
+      ];
+
+      productos.forEach((producto, i) => {
+        document.write(`
+          <div class="producto">
+            <img src="https://via.placeholder.com/200x200?text=${producto.replace(/ /g,'+')}" alt="${producto}" />
+            <h3>${producto}</h3>
+            <p>C$ ${(7000 + i * 300).toLocaleString()}</p>
+            <button onclick="mostrarFormulario('${producto}')">Comprar</button>
+          </div>
+        `);
+      });
+    </script>
+  </section>
+
+  <section class="formulario" id="formulario">
+    <h2>Formulario de Compra</h2>
+    <p id="productoSeleccionado"></p>
+    <input type="text" placeholder="Nombres" id="nombres" required>
+    <input type="text" placeholder="Apellidos" id="apellidos" required>
+    <input type="text" placeholder="Cédula" id="cedula" required>
+    <input type="text" placeholder="Tarjeta de banco" id="tarjeta" required>
+    <button onclick="finalizarCompra()">Finalizar Compra</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Mi Tienda | Inspirado en El Gallo más Gallo</p>
+  </footer>
+
+  <script>
+    function mostrarFormulario(producto) {
+      document.getElementById('productos').style.display = 'none';
+      document.getElementById('formulario').style.display = 'block';
+      document.getElementById('productoSeleccionado').innerText = `Producto seleccionado: ${producto}`;
+    }
+
+    function finalizarCompra() {
+      const nombres = document.getElementById('nombres').value;
+      const apellidos = document.getElementById('apellidos').value;
+      const cedula = document.getElementById('cedula').value;
+      const tarjeta = document.getElementById('tarjeta').value;
+
+      if (nombres && apellidos && cedula && tarjeta) {
+        document.body.innerHTML = '<h1 style="text-align:center; padding: 50px;">Gracias por su compra</h1>';
+      } else {
+        alert('Por favor complete todos los campos');
+      }
+    }
+  </script>
+
+</body>
+</html>
